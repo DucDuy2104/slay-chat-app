@@ -1,10 +1,14 @@
-import { View, Text } from 'react-native'
+import { View, Text, TextInput, Image } from 'react-native'
 import React from 'react'
+import friendStyle from './style'
 
 const Friend = () => {
   return (
-    <View>
-      <Text>Friend</Text>
+    <View style={friendStyle.container}>
+      <View style={friendStyle.inputContainer}>
+        <TextInput placeholder="Enter friend's email" style={friendStyle.input}/>
+        <Image style={friendStyle.icon20} source={require('../../assets/image/search.png')}/>
+      </View>
     </View>
   )
 }
