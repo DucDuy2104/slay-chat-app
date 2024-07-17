@@ -2,6 +2,14 @@ import { View, Text, TextInput, Image } from 'react-native'
 import React from 'react'
 import friendStyle from './style'
 
+const FriendItem = () => {
+  return (
+    <View>
+      
+    </View>
+  )
+}
+
 const Friend = () => {
   return (
     <View style={friendStyle.container}>
