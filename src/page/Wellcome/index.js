@@ -1,10 +1,11 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
-
+import wellcomeStyle from './style'
 const Wellcome = () => {
   return (
     <View>
-      <Text>Wellcome</Text>
+      <Image style={wellcomeStyle.image} source={require('../../assets/image/logowellcome.png')} />
+      <Text style={wellcomeStyle.slay}>Slay Chat</Text>
     </View>
   )
 }

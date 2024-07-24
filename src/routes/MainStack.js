@@ -6,6 +6,9 @@ import Login from '../page/Login'
 import SignUp from '../page/SignUp'
 import BottomNav from './BottomNav'
 
+import EditProfile from '../page/EditProfile'
+import ForgotPass from '../page/ForgotPass'
+
 const Stack = createStackNavigator()
 
 const MainStack = () => {
@@ -14,8 +17,9 @@ const MainStack = () => {
      screenOptions={{
       headerShown: false
      }}
-     initialRouteName='Login'
+     initialRouteName='EditProfile'
     >
+       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="Wellcome" component={Wellcome} />
       <Stack.Screen name="Login" component={Login}/>
       <Stack.Screen name="SignUp" component={SignUp}/>
