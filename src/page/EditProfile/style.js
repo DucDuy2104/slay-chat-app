@@ -18,6 +18,7 @@ const editProfileStyle = StyleSheet.create({
         height: 23
       },
       avatarContainer: {
+        marginVertical: 50,
         alignItems: 'center',
         width: '100%',
         justifyContent: 'center'
@@ -26,7 +27,7 @@ const editProfileStyle = StyleSheet.create({
         width: 24,
         height: 24,
         position: 'absolute',
-        top: 150,
+        top: 155,
         right: 120
       },
       avatar: {
@@ -40,12 +41,32 @@ const editProfileStyle = StyleSheet.create({
         color: '#000000'
       },
       text: {
+        marginLeft: 20,
         fontSize: 16,
         fontWeight: 'bold',
         color: '#000000',
         marginTop: 24
       },
-      input: {}
+      input: {
+        margin: 20,
+        borderColor: '#000000',
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        padding: 13,
+        marginTop: 8
+      },
+      button: {
+        backgroundColor: '#41C8E5',
+        padding: 13,
+        borderRadius: 10,
+        margin: 20
+      },
+      buttonText: {
+        color: '#000000',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold'
+      }
 })
 
 export default editProfileStyle
