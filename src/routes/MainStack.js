@@ -16,7 +16,7 @@ const MainStack = () => {
      screenOptions={{
       headerShown: false
      }}
-     initialRouteName='Wellcome'
+     initialRouteName='Login'
     >
       <Stack.Screen name="Wellcome" component={Wellcome} />
       <Stack.Screen name="Login" component={Login}/>
