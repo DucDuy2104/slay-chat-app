@@ -12,6 +12,8 @@ const ConversationItem = () => {
           <Text style={chatStyle.lastMessage}>How are u?</Text>
         </View>
         <Text style={chatStyle.time}>12:20 PM</Text>
+
+        
       </View>
     </TouchableOpacity>
   )
