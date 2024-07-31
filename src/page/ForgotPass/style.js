@@ -65,6 +65,9 @@ const forgotPassStyle = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold'
+      },
+      hide: {
+        display: "none"
       }
 })
 

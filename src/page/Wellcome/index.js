@@ -1,7 +1,12 @@
 import { View, Text, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import wellcomeStyle from './style'
-const Wellcome = () => {
+const Wellcome = ({ navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('Login')
+    }, 3000)
+  })
   return (
     <View>
       <Image style={wellcomeStyle.image} source={require('../../assets/image/logowellcome.png')} />

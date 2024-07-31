@@ -19,6 +19,7 @@ const profileStyle = StyleSheet.create({
         height: 50,
         borderRadius: 25,
         marginRight: 16,
+        resizeMode: 'cover'
       },
       profileInfo: {
         flexDirection: 'column',

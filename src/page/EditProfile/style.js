@@ -20,20 +20,24 @@ const editProfileStyle = StyleSheet.create({
       avatarContainer: {
         marginVertical: 50,
         alignItems: 'center',
-        width: '100%',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignSelf: 'center'
       },
       add: {
         width: 24,
         height: 24,
         position: 'absolute',
-        top: 155,
-        right: 120
+        bottom: 20,
+        right: 20
       },
       avatar: {
+        width: 200,
+        height: 200,
+        borderRadius: 50,
         marginTop: 24,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'white'
       },
       textHeader: {
         fontSize: 30,
@@ -66,6 +70,20 @@ const editProfileStyle = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold'
+      },
+      overLay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "black",
+        opacity: 0.3,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      hide: {
+        display: 'none'
       }
 })
 

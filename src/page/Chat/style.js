@@ -30,7 +30,8 @@ const chatStyle = StyleSheet.create({
     avatar: {
         width:  35, 
         height: 35,
-        borderRadius: 35
+        borderRadius: 35,
+        backgroundColor: "#fff"
     },
     name: {
         fontSize: 16,

@@ -5,24 +5,42 @@ import Wellcome from '../page/Wellcome'
 import Login from '../page/Login'
 import SignUp from '../page/SignUp'
 import BottomNav from './BottomNav'
+import { useSelector } from 'react-redux'
+import Conversation from '../page/Conversation'
+import EditProfile from '../page/EditProfile'
+import ForgotPass from '../page/ForgotPass'
 
 
 
 const Stack = createStackNavigator()
 
 const MainStack = () => {
+  const appState = useSelector((state) => state.app)
   return (
-    <Stack.Navigator
-     screenOptions={{
-      headerShown: false
-     }}
-     initialRouteName='Login'
-    >
-      <Stack.Screen name="Wellcome" component={Wellcome} />
-      <Stack.Screen name="Login" component={Login}/>
-      <Stack.Screen name="SignUp" component={SignUp}/>
-      <Stack.Screen name="BottomNav" component={BottomNav}/>
-    </Stack.Navigator>
+    appState.user ? (
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
+        }}
+        initialRouteName='BottomNav'
+      >
+        <Stack.Screen name="BottomNav" component={BottomNav} />
+        <Stack.Screen name="Conversation" component={Conversation}/>
+        <Stack.Screen name="EditProfile" component={EditProfile}/>
+        <Stack.Screen name="ChangePassword" component={ForgotPass}/>
+      </Stack.Navigator>
+    ) : (
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
+        }}
+        initialRouteName='Wellcome'
+      >
+        <Stack.Screen name="Wellcome" component={Wellcome} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Navigator>
+    )
   )
 }
 

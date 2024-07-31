@@ -1,39 +1,64 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import profileStyle from './style'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../redux/Reducer'
 
-const Profile = () => {
+const Profile = ({navigation}) => {
+
+  const appState = useSelector((state) => state.app)
+
+  const onEditProfile = () => {
+    navigation.navigate('EditProfile')
+  }
+
+  const onChangePassword = () => {
+    navigation.navigate('ChangePassword')
+  }
+
+
+  const dispatch = useDispatch()
   return (
     <View style={profileStyle.container}>
       <View style={profileStyle.profileContainer}>
         <Image
           style={profileStyle.profileImage}
-          source={require('../../assets/image/avatar.jpg')}
+          source={{uri: appState.user?.avatar}}
         />
         <View style={profileStyle.profileInfo}>
-          <Text style={profileStyle.profileName}>Đào Minh Thành</Text>
-          <Text style={profileStyle.profileEmail}>dmthanh@gmail.com</Text>
+          <Text style={profileStyle.profileName}>{appState.user?.userName}</Text>
+          <Text style={profileStyle.profileEmail}>{appState.user?.email}</Text>
         </View>
       </View>
 
-      <TouchableOpacity style={profileStyle.button} onPress={() => alert('Cài đặt')}>
-      <Image
+      <TouchableOpacity style={profileStyle.button} onPress={onEditProfile}>
+        <Image
           style={profileStyle.icon}
           source={require('./setting.png')}
         />
-        <Text style={profileStyle.buttonText}>Cài đặt</Text>
+        <Text style={profileStyle.buttonText}>Sửa thông tin</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={profileStyle.button} onPress={onChangePassword}>
+        <Image
+          style={profileStyle.icon}
+          source={require('../../assets/image/change.png')}
+        />
+        <Text style={profileStyle.buttonText}>Đổi mật khẩu</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={profileStyle.button} onPress={() => alert('Gửi phản hồi')}>
-      <Image
+        <Image
           style={profileStyle.icon}
           source={require('./feedback.png')}
         />
         <Text style={profileStyle.buttonText}>Gửi phản hồi</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[profileStyle.button, profileStyle.logoutButton]} onPress={() => alert('Đăng xuất')}>
-      <Image
+      <TouchableOpacity style={[profileStyle.button, profileStyle.logoutButton]} onPress={() => {
+          dispatch(logout())
+      }}>
+        <Image
           style={profileStyle.icon}
           source={require('./logout.png')}
         />

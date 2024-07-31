@@ -20,7 +20,7 @@ const loginStyle = StyleSheet.create({
         marginBottom: 10,
         paddingHorizontal: 10,
         backgroundColor: 'white',
-        color: '#CDCDCD',
+        color: '#000',
         shadowColor: "#CDCDCD",
         shadowOffset: {
             width: 0,

@@ -1,53 +1,57 @@
-import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, TextInput, Image, TouchableOpacity, ActivityIndicator, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import loginStyle from './style'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../../redux/UserAPI'
+import { setErrorMessage } from '../../redux/Reducer'
 
-const Login = (props) => {
-  const {navigation} = props
+const Login = ({navigation}) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const appState = useSelector((state) =>  state.app)
+  const dispatch = useDispatch()
 
-  const [email, setemail] = useState(false)
-  const [password, setpassword] = useState(false)
 
-  const ClickRegister = () => {
-    console.log('ClickRegister')
-      navigation.navigate('SignUp')
-  } 
-
-  const handlerUdateProfile = async () => {
+  const onLogin = () => {
     try {
-      const response = fetch('thay link api do', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password
-        }),
-      });
-      const ResponseData = await response.json();
-      if(response.ok == true){
-        Alert.alert('Success', 'Login success')
+      if(!email || !password) {
+        dispatch(setErrorMessage('Empty form!'))
+        return
       }
-      else{
-        Alert.alert('Error', 'Login failed', ResponseData.message)
-      }
+      dispatch(login({
+        email,
+        password
+      }))
     } catch (error) {
-      console.log(error)
+      dispatch(setErrorMessage(error.message))
     }
   }
+
+  const goToRegister = () => {
+    navigation.navigate('SignUp')
+  }
+
+  useEffect(() => {
+    if(appState.errMessage) {
+      Alert.alert("error", appState.errMessage)
+      dispatch(setErrorMessage(null))
+    }
+  }, [appState.errMessage])
+
+
   
   return (
     <View style={loginStyle.container}>
       <Image style={loginStyle.logo} source={require('../Login/logo.png')} />
        <Text style={loginStyle.title}>Wellcome</Text>
        <Text style={loginStyle.title1}>Login and enjoy your time</Text>
-       <TextInput placeholder="Email" onChangeText={(text) => setemail(text)} style={loginStyle.input}/>
-       <TextInput placeholder="Password" onChangeText={(text) => setpassword(text)} style={loginStyle.input}/>
-       <TouchableOpacity style={loginStyle.button}>
+       <TextInput placeholder="Email" onChangeText={(text) => setEmail(text)} style={loginStyle.input}/>
+       <TextInput placeholder="Password" onChangeText={(text) => setPassword(text)} style={loginStyle.input}/>
+       <TouchableOpacity onPress={onLogin} style={loginStyle.button}>
         <Text style={loginStyle.buttonText}>Login</Text>
         </TouchableOpacity>
-        <Text style={loginStyle.text}>Don't have an account? <Text style={loginStyle.text1} onPress={ClickRegister}>Register</Text></Text>
+        <Text style={loginStyle.text}>Don't have an account? <Text style={loginStyle.text1} onPress={goToRegister}>Register</Text></Text>
+        <ActivityIndicator style={appState.state == 'loading' || {display: 'none'}}/>
     </View>
   )
 }
