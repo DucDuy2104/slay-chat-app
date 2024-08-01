@@ -20,7 +20,8 @@ const friendStyle = StyleSheet.create({
     },
     input: {
         flex: 1,
-        paddingRight: 10
+        paddingRight: 10,
+        color: 'black'
     },
     icon20:{
         width: 20,

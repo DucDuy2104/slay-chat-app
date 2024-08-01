@@ -4,6 +4,7 @@ import friendStyle from './style'
 import { useSelector } from 'react-redux'
 import AxiosInstance from '../../helper/AxiosInstance'
 import { FlatList } from 'react-native-gesture-handler'
+import colors from '../../assets/color/colors'
 
 const FriendItem = ({ friend, addOrRemoveFriend, onGoToChat }) => {
   const [isFriend, setIsFriend] = useState(friend.isFriend);
@@ -172,7 +173,7 @@ const Friend = ({ navigation }) => {
   return (
     <View style={friendStyle.container}>
       <View style={friendStyle.inputContainer}>
-        <TextInput value={emailInput} onChangeText={(txt) => setEmailInput(txt)} placeholder="Enter friend's email" style={friendStyle.input} />
+        <TextInput placeholderTextColor={colors.gray} value={emailInput} onChangeText={(txt) => setEmailInput(txt)} placeholder="Enter friend's email" style={friendStyle.input} />
         <TouchableOpacity onPress={findFriend}>
           <Image style={friendStyle.icon20} source={require('../../assets/image/search.png')} />
         </TouchableOpacity>

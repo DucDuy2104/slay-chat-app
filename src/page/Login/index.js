@@ -4,6 +4,7 @@ import loginStyle from './style'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../redux/UserAPI'
 import { setErrorMessage } from '../../redux/Reducer'
+import colors from '../../assets/color/colors'
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('')
@@ -45,8 +46,8 @@ const Login = ({navigation}) => {
       <Image style={loginStyle.logo} source={require('../Login/logo.png')} />
        <Text style={loginStyle.title}>Wellcome</Text>
        <Text style={loginStyle.title1}>Login and enjoy your time</Text>
-       <TextInput placeholder="Email" onChangeText={(text) => setEmail(text)} style={loginStyle.input}/>
-       <TextInput placeholder="Password" onChangeText={(text) => setPassword(text)} style={loginStyle.input}/>
+       <TextInput placeholderTextColor={colors.gray} placeholder="Email" onChangeText={(text) => setEmail(text)} style={loginStyle.input}/>
+       <TextInput placeholderTextColor={colors.gray} placeholder="Password" onChangeText={(text) => setPassword(text)} style={loginStyle.input}/>
        <TouchableOpacity onPress={onLogin} style={loginStyle.button}>
         <Text style={loginStyle.buttonText}>Login</Text>
         </TouchableOpacity>

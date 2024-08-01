@@ -27,6 +27,7 @@ const profileStyle = StyleSheet.create({
       profileName: {
         fontSize: 16,
         fontWeight: 'bold',
+        color: 'black'
       },
       profileEmail: {
         fontSize: 14,
@@ -43,6 +44,7 @@ const profileStyle = StyleSheet.create({
       buttonText: {
         fontSize: 16,
         marginLeft: 10,
+        color: 'black'
       },
       icon: {
         width: 24,

@@ -7,6 +7,7 @@ import axios from 'axios'
 import { launchImageLibrary } from 'react-native-image-picker'
 import AxiosInstance from '../../helper/AxiosInstance'
 import { updateUser } from '../../redux/Reducer'
+import colors from '../../assets/color/colors'
 const EditProfile = ({ navigation }) => {
   const appState = useSelector((state) => state.app)
   const [name, setName] = useState(appState.user?.userName)
@@ -124,7 +125,7 @@ const EditProfile = ({ navigation }) => {
           <Image style={editProfileStyle.add} source={require('../../assets/image/addimage.png')} />
         </TouchableOpacity>
         <Text style={editProfileStyle.text}>Name</Text>
-        <TextInput value={name} onChangeText={(txt) => setName(txt)} placeholder='Nhập name...' style={editProfileStyle.input} />
+        <TextInput placeholderTextColor={colors.gray} value={name} onChangeText={(txt) => setName(txt)} placeholder='Nhập name...' style={editProfileStyle.input} />
         <TouchableOpacity onPress={onUpdateProfile} style={editProfileStyle.button}>
           <Text style={editProfileStyle.buttonText}>Cập nhật</Text>
         </TouchableOpacity>

@@ -52,7 +52,8 @@ const forgotPassStyle = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 13,
-        marginTop: 8
+        marginTop: 8,
+        color: 'black'
       },
       button: {
         backgroundColor: '#41C8E5',
