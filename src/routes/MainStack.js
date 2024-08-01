@@ -9,8 +9,7 @@ import { useSelector } from 'react-redux'
 import Conversation from '../page/Conversation'
 import EditProfile from '../page/EditProfile'
 import ForgotPass from '../page/ForgotPass'
-
-
+import FeedBack from '../page/FeedBack'
 
 const Stack = createStackNavigator()
 
@@ -28,6 +27,7 @@ const MainStack = () => {
         <Stack.Screen name="Conversation" component={Conversation}/>
         <Stack.Screen name="EditProfile" component={EditProfile}/>
         <Stack.Screen name="ChangePassword" component={ForgotPass}/>
+        <Stack.Screen name="FeedBack" component={FeedBack}/>
       </Stack.Navigator>
     ) : (
       <Stack.Navigator

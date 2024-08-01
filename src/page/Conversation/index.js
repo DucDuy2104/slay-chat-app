@@ -87,7 +87,7 @@ const Conversation = ({ navigation, route }) => {
 
   useEffect(() => {
 
-    let socket = io(`http://${constants.ipV4}:8888`)
+    let socket = io(`https://slay-chat-back-end.onrender.com`)
 
     socket.on('sendMessage', data => {
       if (data.message.conversationId == conversationId) {

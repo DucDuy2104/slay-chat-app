@@ -5,7 +5,7 @@ const Wellcome = ({ navigation}) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('Login')
-    }, 3000)
+    }, 1500)
   })
   return (
     <View>

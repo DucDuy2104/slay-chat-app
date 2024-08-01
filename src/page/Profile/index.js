@@ -16,6 +16,10 @@ const Profile = ({navigation}) => {
     navigation.navigate('ChangePassword')
   }
 
+  const onFeedBack = () => {
+    navigation.navigate('FeedBack')
+  }
+
 
   const dispatch = useDispatch()
   return (
@@ -23,7 +27,7 @@ const Profile = ({navigation}) => {
       <View style={profileStyle.profileContainer}>
         <Image
           style={profileStyle.profileImage}
-          source={{uri: appState.user?.avatar}}
+          source={appState.user? {uri: appState.user?.avatar} : require('../../assets/image/avatar.jpg')}
         />
         <View style={profileStyle.profileInfo}>
           <Text style={profileStyle.profileName}>{appState.user?.userName}</Text>
@@ -47,7 +51,7 @@ const Profile = ({navigation}) => {
         <Text style={profileStyle.buttonText}>Đổi mật khẩu</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={profileStyle.button} onPress={() => alert('Gửi phản hồi')}>
+      <TouchableOpacity style={profileStyle.button} onPress={onFeedBack}>
         <Image
           style={profileStyle.icon}
           source={require('./feedback.png')}

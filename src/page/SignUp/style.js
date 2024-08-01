@@ -20,7 +20,7 @@ const signUpStyle = StyleSheet.create({
         marginBottom: 10,
         paddingHorizontal: 10,
         backgroundColor: 'white',
-        color: '#CDCDCD',
+        color: '#000',
         shadowColor: "#CDCDCD",
         shadowOffset: {
             width: 0,
@@ -28,6 +28,7 @@ const signUpStyle = StyleSheet.create({
         },
         shadowOpacity: 50,
         shadowRadius: 40,
+    
     },
     button: {
         width: '40%',
@@ -60,6 +61,9 @@ const signUpStyle = StyleSheet.create({
     },
     text1:{
         color: '#2997F5',
+    },
+    hide: {
+        display: 'none'
     }
 })
 

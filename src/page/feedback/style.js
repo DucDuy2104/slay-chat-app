@@ -49,6 +49,9 @@ const feedbackStyle = StyleSheet.create({
         fontSize: 27,
         textAlign:'center',
         marginTop: 6
+    },
+    hide: {
+        display: "none"
     }
 })
 export default feedbackStyle;

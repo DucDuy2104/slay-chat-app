@@ -4,7 +4,7 @@ import constants from '../assets/constants/constants';
 
 const AxiosInstance = (contentType = 'application/json') => {
     const axiosInstance = axios.create({
-        baseURL: `http://${constants.ipV4}:8888/`
+        baseURL: `https://slay-chat-back-end.onrender.com/`
     });
 
     axiosInstance.interceptors.request.use(

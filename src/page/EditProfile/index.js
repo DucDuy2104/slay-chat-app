@@ -120,7 +120,7 @@ const EditProfile = ({ navigation }) => {
       </View>
       <View>
         <TouchableOpacity onPress={pickImage} style={editProfileStyle.avatarContainer}>
-          <Image style={editProfileStyle.avatar} source={{ uri: avatar }} />
+          <Image style={editProfileStyle.avatar} source={appState.user? { uri: avatar } : require('../../assets/image/avatar.jpg')} />
           <Image style={editProfileStyle.add} source={require('../../assets/image/addimage.png')} />
         </TouchableOpacity>
         <Text style={editProfileStyle.text}>Name</Text>

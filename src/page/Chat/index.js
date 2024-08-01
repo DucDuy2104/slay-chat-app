@@ -73,17 +73,19 @@ const Chat = ({ navigation }) => {
 
   const getConversation = async () => {
     try {
-      const response = await AxiosInstance().get(`/conversation/get-conversation/${appState.user?._id}`)
-      console.log("data: ", response)
-      const sortedConversations = sortConversations(response.data)
-      setConversations(sortedConversations)
+      if (appState.user) {
+        const response = await AxiosInstance().get(`/conversation/get-conversation/${appState.user?._id}`)
+        console.log("data: ", response)
+        const sortedConversations = sortConversations(response.data)
+        setConversations(sortedConversations)
+      }
     } catch (error) {
       console.error(error)
     }
   }
 
   useEffect(() => {
-    const socket = io(`http://${constants.ipV4}:8888`)
+    const socket = io(`https://slay-chat-back-end.onrender.com`)
 
     socket.on('sendMessage', data => {
       setConversations(prevConversations => {
@@ -115,11 +117,30 @@ const Chat = ({ navigation }) => {
   const sortConversations = useCallback((conversations) => {
     console.log('Sorting conversations.......')
     return conversations.slice().sort((a, b) => {
-      if (!(a?.lastMessage)) return 1;
-      if (!(b?.lastMessage)) return -1;
-      return new Date(b.lastMessage?.createdAt) - new Date(a.lastMessage?.createdAt)
+      const dateA = a.lastMessage? a.lastMessage?.createdAt : a.createdAt
+      const dateB = b.lastMessage? b.lastMessage?.createdAt : b.createdAt
+      return new Date(dateB) - new Date(dateA)
     })
   }, [])
+
+  useEffect(() => {
+    let socket = io(`https://slay-chat-back-end.onrender.com`)
+
+    socket.on('createConversation', data => {
+      const participant = data.participants.find(pa => pa._id === appState.user?._id)
+      if (participant) {
+        setConversations(preConversations => {
+          const newConversations = [...preConversations]
+          newConversations.push(data)
+          return sortConversations(newConversations)
+        })
+      }
+    })
+
+    return () => {
+      socket.disconnect()
+    }
+  }, [appState.user])
 
   return (
     <View style={chatStyle.container}>
