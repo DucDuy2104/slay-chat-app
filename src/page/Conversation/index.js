@@ -117,7 +117,7 @@ const Conversation = ({ navigation, route }) => {
         </TouchableOpacity>
         <Image style={conversationStyle.image35} source={{ uri: avatar }} />
         <View style={conversationStyle.headerContent}>
-          <Text style={conversationStyle.name}>{userName}</Text>
+          <Text ellipsizeMode='tail' numberOfLines={1} style={conversationStyle.name}>{userName}</Text>
           <Text style={conversationStyle.active}>Đang hoạt động <View style={conversationStyle.dot} /></Text>
         </View>
       </View>

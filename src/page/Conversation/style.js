@@ -87,7 +87,8 @@ const conversationStyle = StyleSheet.create({
     input: {
         flex: 1,
         fontSize: 16,
-        fontWeight: 'medium'
+        fontWeight: 'medium',
+        color: 'black'
     },
     image26: {
         width: 26,

@@ -2,9 +2,10 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import profileStyle from './style'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../../redux/Reducer'
+import { logout, resetListFriends } from '../../redux/Reducer'
 
 const Profile = ({navigation}) => {
+  
 
   const appState = useSelector((state) => state.app)
 
@@ -60,6 +61,7 @@ const Profile = ({navigation}) => {
       </TouchableOpacity>
 
       <TouchableOpacity style={[profileStyle.button, profileStyle.logoutButton]} onPress={() => {
+          dispatch(resetListFriends())
           dispatch(logout())
       }}>
         <Image

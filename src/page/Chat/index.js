@@ -1,11 +1,12 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Modal } from 'react-native'
 import React, { useEffect, useState, useCallback } from 'react'
 import chatStyle from './style'
 import AxiosInstance from '../../helper/AxiosInstance'
-import { FlatList } from 'react-native-gesture-handler'
+import { FlatList, TextInput } from 'react-native-gesture-handler'
 import { useSelector } from 'react-redux'
 import { io } from 'socket.io-client'
-import constants from '../../assets/constants/constants'
+import friendStyle from '../Friend/style'
+import colors from '../../assets/color/colors'
 
 const ConversationItem = ({ conversation, curUser, navigation }) => {
   const enterName = () => {
@@ -15,7 +16,7 @@ const ConversationItem = ({ conversation, curUser, navigation }) => {
         conversationName += participant.userName + ", "
       }
     }
-    return conversationName.trim().slice(0, -1)
+    return conversationName.trim().slice(0, -1) + (conversation.participants.length  > 2? ", Bạn" : "")
   }
 
   const enterImage = () => {
@@ -57,7 +58,7 @@ const ConversationItem = ({ conversation, curUser, navigation }) => {
       <View style={chatStyle.conversationContainer}>
         <Image style={chatStyle.image50} source={{ uri: enterImage() }} />
         <View style={chatStyle.infoContent}>
-          <Text style={chatStyle.nameConversation}>{enterName()}</Text>
+          <Text numberOfLines={1} ellipsizeMode='tail' style={chatStyle.nameConversation}>{enterName()}</Text>
           <Text style={chatStyle.lastMessage}>{conversation.lastMessage ? (conversation.lastMessage.sender === curUser?._id ? "You: " : "") + conversation.lastMessage.content : "chưa có tin nhắn nào!"}</Text>
         </View>
         <Text style={chatStyle.time}>{conversation.lastMessage ? createTime(conversation.lastMessage.createdAt) : ""}</Text>
@@ -65,6 +66,8 @@ const ConversationItem = ({ conversation, curUser, navigation }) => {
     </TouchableOpacity>
   )
 }
+
+
 
 const Chat = ({ navigation }) => {
   const appState = useSelector((state) => state.app)
@@ -117,8 +120,8 @@ const Chat = ({ navigation }) => {
   const sortConversations = useCallback((conversations) => {
     console.log('Sorting conversations.......')
     return conversations.slice().sort((a, b) => {
-      const dateA = a.lastMessage? a.lastMessage?.createdAt : a.createdAt
-      const dateB = b.lastMessage? b.lastMessage?.createdAt : b.createdAt
+      const dateA = a.lastMessage ? a.lastMessage?.createdAt : a.createdAt
+      const dateB = b.lastMessage ? b.lastMessage?.createdAt : b.createdAt
       return new Date(dateB) - new Date(dateA)
     })
   }, [])
@@ -142,6 +145,10 @@ const Chat = ({ navigation }) => {
     }
   }, [appState.user])
 
+  const goToAddGroup = () => {
+    navigation.navigate('AddGroup')
+  }
+
   return (
     <View style={chatStyle.container}>
       <View style={chatStyle.header}>
@@ -150,6 +157,10 @@ const Chat = ({ navigation }) => {
           <Text style={chatStyle.name}>{appState?.user?.userName}</Text>
           <Text style={chatStyle.active}>Active <View style={chatStyle.dot} /></Text>
         </View>
+        <TouchableOpacity onPress={goToAddGroup} style={chatStyle.button30}>
+          <Text style={chatStyle.textButton}>Tạo nhóm</Text>
+          <Image style={chatStyle.icon20} source={require('../../assets/image/addgroup.png')} />
+        </TouchableOpacity>
       </View>
       <FlatList
         data={conversations}

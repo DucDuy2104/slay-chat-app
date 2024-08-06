@@ -39,6 +39,8 @@ const Login = ({navigation}) => {
     }
   }, [appState.errMessage])
 
+  console.log(appState.state)
+
 
   
   return (
@@ -47,7 +49,7 @@ const Login = ({navigation}) => {
        <Text style={loginStyle.title}>Wellcome</Text>
        <Text style={loginStyle.title1}>Login and enjoy your time</Text>
        <TextInput placeholderTextColor={colors.gray} placeholder="Email" onChangeText={(text) => setEmail(text)} style={loginStyle.input}/>
-       <TextInput placeholderTextColor={colors.gray} placeholder="Password" onChangeText={(text) => setPassword(text)} style={loginStyle.input}/>
+       <TextInput secureTextEntry={true} placeholderTextColor={colors.gray} placeholder="Password" onChangeText={(text) => setPassword(text)} style={loginStyle.input}/>
        <TouchableOpacity onPress={onLogin} style={loginStyle.button}>
         <Text style={loginStyle.buttonText}>Login</Text>
         </TouchableOpacity>

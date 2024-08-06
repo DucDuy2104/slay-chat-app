@@ -6,21 +6,7 @@ import AxiosInstance from '../../helper/AxiosInstance'
 import { FlatList } from 'react-native-gesture-handler'
 import colors from '../../assets/color/colors'
 
-const FriendItem = ({ friend, addOrRemoveFriend, onGoToChat }) => {
-  const [isFriend, setIsFriend] = useState(friend.isFriend);
-
-  const onMarkPress = async () => {
-    const response = await addOrRemoveFriend(friend._id);
-    if (response.status) {
-      setIsFriend(prevState => !prevState);
-    } else {
-      Alert.alert('Error', response.data.message);
-    }
-  };
-
-  useEffect(() => {
-    setIsFriend(friend.isFriend);
-  }, [friend.isFriend]);
+const FriendItem = ({ friend, addOrRemoveFriend, onGoToChat, curUser }) => {
 
   return (
     <View style={friendStyle.friendContainer}>
@@ -29,13 +15,13 @@ const FriendItem = ({ friend, addOrRemoveFriend, onGoToChat }) => {
         <Text style={friendStyle.name}>{friend.userName}</Text>
         <Text style={friendStyle.email}>{friend.email}</Text>
       </View>
-      <TouchableOpacity onPress={onMarkPress} style={[friendStyle.btn, friendStyle.backgroundColorGreen]}>
+      <TouchableOpacity onPress={addOrRemoveFriend} style={[friendStyle.btn, friendStyle.backgroundColorGreen, curUser?._id === friend._id && friendStyle.hide]}>
         <Image
           style={friendStyle.image20}
-          source={isFriend ? require('../../assets/image/mark_ch.png') : require('../../assets/image/mark.png')}
+          source={friend.isFriend ? require('../../assets/image/mark_ch.png') : require('../../assets/image/mark.png')}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {onGoToChat(friend._id)}} style={[friendStyle.btn, friendStyle.backgroundColorBlue]}>
+      <TouchableOpacity onPress={() => { onGoToChat(friend._id) }} style={[friendStyle.btn, friendStyle.backgroundColorBlue, curUser?._id === friend._id && friendStyle.hide]}>
         <Image style={friendStyle.image20} source={require('../../assets/image/chat.png')} />
       </TouchableOpacity>
     </View>
@@ -81,6 +67,18 @@ const Friend = ({ navigation }) => {
         currUserId: appState.user?._id,
         friendId
       })
+
+      if(response.status) {
+        setFriends(preFriends => {
+          var newFriends = [...preFriends]
+          const index = newFriends.findIndex(friend => friend._id === friendId)
+          if (index === -1) {
+            return newFriends
+          }
+          newFriends[index].isFriend = !(newFriends[index].isFriend)
+          return newFriends
+        })
+      }
       setLoading(false)
 
       console.log(response)
@@ -186,7 +184,7 @@ const Friend = ({ navigation }) => {
         friends.length == 0 ? <Text>Không tìm thấy bạn</Text> :
           <FlatList
             data={friends}
-            renderItem={({ item }) => <FriendItem onGoToChat={createOrGetConversation} addOrRemoveFriend={addOrRemoveFriend} friend={item} />}
+            renderItem={({ item }) => <FriendItem curUser={appState.user} onGoToChat={createOrGetConversation} addOrRemoveFriend={() => addOrRemoveFriend(item._id)} friend={item} />}
             keyExtractor={(item, id) => id.toString()}
             showsVerticalScrollIndicator={false}
           />

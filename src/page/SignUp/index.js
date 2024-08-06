@@ -65,8 +65,8 @@ const SignUp = ({ navigation }) => {
       <Text style={signUpStyle.title1}>Create account</Text>
       <TextInput placeholderTextColor={colors.gray} value={name} onChangeText={(txt) => setName(txt)} placeholder="Name" style={signUpStyle.input} />
       <TextInput placeholderTextColor={colors.gray} value={email} onChangeText={(txt) => setEmail(txt)} placeholder="Email" style={signUpStyle.input} />
-      <TextInput placeholderTextColor={colors.gray} value={password} onChangeText={(txt) => setPassword(txt)} placeholder="Password" style={signUpStyle.input} />
-      <TextInput placeholderTextColor={colors.gray} value={repassword} onChangeText={(txt) => setrepassword(txt)} placeholder="Confirm password" style={signUpStyle.input} />
+      <TextInput secureTextEntry={true} placeholderTextColor={colors.gray} value={password} onChangeText={(txt) => setPassword(txt)} placeholder="Password" style={signUpStyle.input} />
+      <TextInput secureTextEntry={true} placeholderTextColor={colors.gray} value={repassword} onChangeText={(txt) => setrepassword(txt)} placeholder="Confirm password" style={signUpStyle.input} />
       <TouchableOpacity onPress={register} style={signUpStyle.button}>
         <Text style={signUpStyle.buttonText}>Register</Text>
       </TouchableOpacity>

@@ -65,11 +65,11 @@ const ForgotPass = ({ navigation }) => {
       </View>
       <View>
         <Text style={forgotPassStyle.text}>Nhập mật khẩu</Text>
-        <TextInput placeholderTextColor={colors.gray} value={oldPassword} onChangeText={(txt) => setOldPassword(txt)} placeholder='Nhập mật khẩu cũ' style={forgotPassStyle.input} />
+        <TextInput secureTextEntry={true} placeholderTextColor={colors.gray} value={oldPassword} onChangeText={(txt) => setOldPassword(txt)} placeholder='Nhập mật khẩu cũ' style={forgotPassStyle.input} />
         <Text style={forgotPassStyle.text}>Nhập mật khẩu</Text>
-        <TextInput placeholderTextColor={colors.gray} value={newPassword} onChangeText={(txt) => setNewPassword(txt)} placeholder='Nhập mật khẩu mới' style={forgotPassStyle.input} />
+        <TextInput secureTextEntry={true} placeholderTextColor={colors.gray} value={newPassword} onChangeText={(txt) => setNewPassword(txt)} placeholder='Nhập mật khẩu mới' style={forgotPassStyle.input} />
         <Text style={forgotPassStyle.text}>Xác nhận mật khẩu</Text>
-        <TextInput placeholderTextColor={colors.gray} value={confirmPassword} onChangeText={(txt) => setConfirmPassword(txt)} placeholder='Nhập mật khẩu' style={forgotPassStyle.input} />
+        <TextInput secureTextEntry={true} placeholderTextColor={colors.gray} value={confirmPassword} onChangeText={(txt) => setConfirmPassword(txt)} placeholder='Nhập mật khẩu' style={forgotPassStyle.input} />
         <TouchableOpacity onPress={updatePassword}  style={forgotPassStyle.button}>
           <Text style={forgotPassStyle.buttonText}>Cập nhật</Text>
         </TouchableOpacity>
